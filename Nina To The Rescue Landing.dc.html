@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nina To The Rescue — Humans saving animals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ultra&family=Baloo+2:wght@600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,900&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html { scroll-behavior: smooth; cursor: url("assets/paw-cursor.svg") 16 16, auto; }
+*, a, button { cursor: url("assets/paw-cursor.svg") 16 16, auto !important; }
+body {
+  --ink: #171512;
+  --orange: #E1560E;
+  --cream: #FBF3E7;
+  --deep: #14453A;
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "Nunito Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+  overflow-x: hidden;
+}
+* { box-sizing: border-box; }
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--ink); }
+@keyframes ninaFloat { 0%,100% { transform: translateX(-50%) translateY(0) rotate(-1deg); } 50% { transform: translateX(-50%) translateY(-16px) rotate(1deg); } }
+@keyframes ninaBadge { 0%,100% { transform: rotate(-9deg) translateY(0); } 50% { transform: rotate(-6deg) translateY(-12px); } }
+@keyframes ninaSpin { to { transform: rotate(360deg); } }
+@keyframes orbFloat { 0%,100% { transform: translate3d(0,0,0) rotate(0deg); } 50% { transform: translate3d(0,-20px,0) rotate(1.4deg); } }
+[data-orb] > div:not([data-orb-inner]) { transition: opacity .2s ease; }
+[data-orb]:hover > div:not([data-orb-inner]) { opacity: 0; pointer-events: none; }
+
+/* ── Scroll reveal base states ──────────────────────────────────────────── */
+[data-reveal] { will-change: opacity, transform; }
+
+/* Honour system motion preference: skip all transitions/animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  [data-orb] { animation: none !important; }
+}
+
+/* ── Mobile ─────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Nav: hide text links, keep logo + donate */
+  [data-navlink] { display: none !important; }
+  header > div {
+    padding: 10px 16px !important;
+    gap: 12px !important;
+  }
+  nav > a:not([data-navlink]) {
+    margin-left: 0 !important;
+    padding: 11px 18px !important;
+    font-size: 15px !important;
+    box-shadow: 3px 3px 0 var(--ink) !important;
+  }
+  /* Reduce section side padding */
+  section > div, footer > div {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  /* Orb cluster: keep it from overflowing */
+  #heroOrbs {
+    width: min(88vw, 460px) !important;
+  }
+  /* Campaign card inner layout */
+  #work div[style*="grid-template-columns:repeat(auto-fit,minmax(300px"] {
+    gap: 0 !important;
+  }
+  /* Partner grid: 2 columns on tablet */
+  #partners div[style*="minmax(210px"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  header > div { padding: 8px 14px !important; }
+  section > div, footer > div {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+  /* Hero headline: a bit tighter */
+  h1 { font-size: clamp(30px, 8.5vw, 62px) !important; }
+  /* Hero CTA row: stack on very small */
+  div[style*="display:flex;flex-wrap:wrap;gap:14px"] {
+    flex-direction: column !important;
+  }
+  div[style*="display:flex;flex-wrap:wrap;gap:14px"] > a {
+    text-align: center !important;
+  }
+  /* Donate section CTA */
+  div[style*="display:flex;flex-wrap:wrap;gap:14px"] { gap: 10px !important; }
+  /* Campaign card buttons */
+  div[style*="display:flex;flex-wrap:wrap;gap:13px"] {
+    flex-direction: column !important;
+  }
+  div[style*="display:flex;flex-wrap:wrap;gap:13px"] > a {
+    text-align: center !important;
+  }
+  /* Partners: single column on very small */
+  #partners div[style*="minmax(210px"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="120" fill="#FBF3E7"></rect>
+    <circle cx="60" cy="60" r="34" fill="#E1560E"></circle>
+    <circle cx="49" cy="54" r="6" fill="#171512"></circle>
+    <circle cx="71" cy="54" r="6" fill="#171512"></circle>
+    <circle cx="60" cy="72" r="9" fill="#171512"></circle>
+  </svg>
+</template>
+
+<div style="position:relative">
+
+<header id="nav" style="position:sticky;top:0;z-index:60;background:var(--cream);border-bottom:2px solid var(--ink);transition:padding .25s ease, box-shadow .25s ease">
+  <div style="max-width:1240px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:28px">
+    <a href="#top" style="display:flex;align-items:center;gap:12px;color:var(--ink);flex:0 0 auto">
+      <span style="display:block;width:52px;height:52px;border-radius:50%;border:2.5px solid var(--ink);background:var(--cream);overflow:hidden;flex:0 0 auto">
+        <img src="assets/nina-mark.png" alt="Nina To The Rescue" style="display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.02)">
+      </span>
+      <span style="display:block;line-height:.95">
+        <span style="display:block;font-family:'Ultra',serif;font-weight:400;font-size:16px;letter-spacing:-.2px">Nina To The Rescue</span>
+        <span style="display:block;font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--deep)">Humans saving animals</span>
+      </span>
+    </a>
+    <nav style="margin-left:auto;display:flex;align-items:center;gap:6px">
+      <a data-navlink href="#about" style="padding:10px 14px;border-radius:999px;font-weight:700;font-size:15px;color:var(--ink);transition:background .18s ease" style-hover="background:rgba(23,21,18,.07)">About Us</a>
+      <a data-navlink href="#work" style="padding:10px 14px;border-radius:999px;font-weight:700;font-size:15px;color:var(--ink);transition:background .18s ease" style-hover="background:rgba(23,21,18,.07)">Our Work</a>
+      <a data-navlink href="#partners" style="padding:10px 14px;border-radius:999px;font-weight:700;font-size:15px;color:var(--ink);transition:background .18s ease" style-hover="background:rgba(23,21,18,.07)">Partners</a>
+      <a href="#donate" style="margin-left:10px;padding:13px 24px;border-radius:999px;background:var(--orange);color:var(--cream);border:2.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:16px;transition:transform .16s ease, box-shadow .16s ease" style-hover="transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);color:var(--cream)" style-active="transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)">Donate</a>
+    </nav>
+  </div>
+</header>
+
+<section id="top" style="position:relative;overflow:hidden;background:var(--cream);border-bottom:2px solid var(--ink)">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,84px) 28px clamp(56px,7vw,96px);display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:clamp(32px,5vw,64px);align-items:center">
+    <div>
+      <span data-reveal style="display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;border:2px solid var(--ink);background:var(--cream);font-size:11.5px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase">Non-profit · El Salvador</span>
+      <h1 data-reveal style="margin:22px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(34px,4.9vw,62px);line-height:1.03;letter-spacing:-1px">Humans<br>saving <span style="color:var(--orange)">animals</span>.</h1>
+      <p data-reveal style="margin:24px 0 0;max-width:30ch;font-size:clamp(17px,1.3vw,20px);line-height:1.5;font-weight:600;color:rgba(23,21,18,.78)">Nina To The Rescue is a non-profit organization focused on providing veterinary care to animals in need in El Salvador.</p>
+      <div data-reveal style="margin-top:34px;display:flex;flex-wrap:wrap;gap:14px">
+        <a href="#donate" style="padding:17px 32px;border-radius:999px;background:var(--orange);color:var(--cream);border:2.5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:19px;transition:transform .16s ease, box-shadow .16s ease" style-hover="transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink);color:var(--cream)" style-active="transform:translate(4px,4px);box-shadow:1px 1px 0 var(--ink)">Donate</a>
+        <a href="#work" style="padding:17px 30px;border-radius:999px;background:transparent;color:var(--ink);border:2.5px solid var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:19px;transition:background .18s ease, color .18s ease" style-hover="background:var(--deep);color:var(--cream);border-color:var(--ink)">See the campaign →</a>
+      </div>
+    </div>
+    <div style="position:relative;display:flex;justify-content:center">
+      <div id="heroOrbs" style="position:relative;width:min(100%,560px);aspect-ratio:1;overflow:visible">
+
+        <div data-orb data-sound="Woof!" data-float="7.4s" style="position:absolute;left:24%;top:20%;width:52%">
+          <div data-orb-inner style="position:relative;width:100%;aspect-ratio:1;transition:transform .45s cubic-bezier(.2,.8,.2,1)">
+            <div style="width:100%;height:100%;border-radius:50%;overflow:hidden;border:2.5px solid var(--ink);box-shadow:12px 12px 0 var(--deep);background:#EFE4D2">
+              <image-slot id="nina-hero-1" shape="circle" placeholder="Foto: perro rescatado" src="assets/photos/IMG_7819.jpg"></image-slot>
+            </div>
+            <div data-bubble style="position:absolute;left:42%;top:99%;padding:9px 16px;border-radius:16px;background:var(--cream);border:2.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:19px;white-space:nowrap;opacity:0;transform:translateY(-8px) rotate(-5deg) scale(.9);transition:opacity .2s ease, transform .28s cubic-bezier(.2,1.4,.4,1);pointer-events:none">Woof!<span style="position:absolute;left:14px;top:-10px;width:14px;height:14px;background:var(--cream);border-left:2.5px solid var(--ink);border-top:2.5px solid var(--ink);transform:rotate(45deg)"></span></div>
+          </div>
+          <div style="position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:5px 12px;border-radius:999px;background:var(--orange);color:var(--cream);border:2px solid var(--ink);font-family:'Nunito Sans',sans-serif;font-size:10px;font-weight:900;letter-spacing:1.3px;text-transform:uppercase;box-shadow:2px 2px 0 var(--ink)">Spay &amp; Neuter</div>
+        </div>
+
+        <div data-orb data-sound="Woof!" data-float="6.1s" style="position:absolute;left:0%;top:2%;width:25%">
+          <div data-orb-inner style="position:relative;width:100%;aspect-ratio:1;transition:transform .45s cubic-bezier(.2,.8,.2,1)">
+            <div style="width:100%;height:100%;border-radius:50%;overflow:hidden;border:2.5px solid var(--ink);box-shadow:7px 7px 0 var(--orange);background:#EFE4D2">
+              <image-slot id="nina-hero-2" shape="circle" placeholder="Foto: perro" src="assets/photos/IMG_7890.jpg"></image-slot>
+            </div>
+            <div data-bubble style="position:absolute;left:64%;top:-18%;padding:7px 13px;border-radius:14px;background:var(--cream);border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:15px;white-space:nowrap;opacity:0;transform:translateY(8px) rotate(6deg) scale(.9);transition:opacity .2s ease, transform .28s cubic-bezier(.2,1.4,.4,1);pointer-events:none">Woof!<span style="position:absolute;left:10px;bottom:-8px;width:12px;height:12px;background:var(--cream);border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg)"></span></div>
+          </div>
+          <div style="position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:4px 9px;border-radius:999px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);font-family:'Nunito Sans',sans-serif;font-size:8px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;box-shadow:2px 2px 0 var(--ink)">Vaccines</div>
+        </div>
+
+        <div data-orb data-sound="Meow!" data-float="8.3s" style="position:absolute;left:77%;top:0%;width:23%">
+          <div data-orb-inner style="position:relative;width:100%;aspect-ratio:1;transition:transform .45s cubic-bezier(.2,.8,.2,1)">
+            <div style="width:100%;height:100%;border-radius:50%;overflow:hidden;border:2.5px solid var(--ink);box-shadow:7px 7px 0 var(--deep);background:#EFE4D2">
+              <image-slot id="nina-hero-3" shape="circle" placeholder="Foto: gato" src="assets/photos/IMG_7925.jpg"></image-slot>
+            </div>
+            <div data-bubble style="position:absolute;right:66%;top:-20%;padding:7px 13px;border-radius:14px;background:var(--orange);color:var(--cream);border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:15px;white-space:nowrap;opacity:0;transform:translateY(8px) rotate(-7deg) scale(.9);transition:opacity .2s ease, transform .28s cubic-bezier(.2,1.4,.4,1);pointer-events:none">Meow!<span style="position:absolute;right:10px;bottom:-8px;width:12px;height:12px;background:var(--orange);border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg)"></span></div>
+          </div>
+          <div style="position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:4px 9px;border-radius:999px;background:var(--deep);color:var(--cream);border:2px solid var(--ink);font-family:'Nunito Sans',sans-serif;font-size:8px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;box-shadow:2px 2px 0 var(--ink)">Treatment</div>
+        </div>
+
+        <div data-orb data-sound="Meow!" data-float="6.8s" style="position:absolute;left:76%;top:56%;width:24%">
+          <div data-orb-inner style="position:relative;width:100%;aspect-ratio:1;transition:transform .45s cubic-bezier(.2,.8,.2,1)">
+            <div style="width:100%;height:100%;border-radius:50%;overflow:hidden;border:2.5px solid var(--ink);box-shadow:7px 7px 0 var(--orange);background:#EFE4D2">
+              <image-slot id="nina-hero-4" shape="circle" placeholder="Foto: gato" src="assets/photos/IMG_7926.jpg"></image-slot>
+            </div>
+            <div data-bubble style="position:absolute;right:70%;top:-16%;padding:7px 13px;border-radius:14px;background:var(--cream);border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:15px;white-space:nowrap;opacity:0;transform:translateY(8px) rotate(5deg) scale(.9);transition:opacity .2s ease, transform .28s cubic-bezier(.2,1.4,.4,1);pointer-events:none">Meow!<span style="position:absolute;right:10px;bottom:-8px;width:12px;height:12px;background:var(--cream);border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg)"></span></div>
+          </div>
+          <div style="position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:4px 9px;border-radius:999px;background:var(--orange);color:var(--cream);border:2px solid var(--ink);font-family:'Nunito Sans',sans-serif;font-size:8px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;box-shadow:2px 2px 0 var(--ink)">Needs a home</div>
+        </div>
+
+        <div data-orb data-sound="Woof!" data-float="9.1s" style="position:absolute;left:3%;top:62%;width:27%">
+          <div data-orb-inner style="position:relative;width:100%;aspect-ratio:1;transition:transform .45s cubic-bezier(.2,.8,.2,1)">
+            <div style="width:100%;height:100%;border-radius:50%;overflow:hidden;border:2.5px solid var(--ink);box-shadow:7px 7px 0 var(--deep);background:#EFE4D2">
+              <image-slot id="nina-hero-5" shape="circle" placeholder="Foto: perro" src="assets/photos/IMG_7891.jpg"></image-slot>
+            </div>
+            <div data-bubble style="position:absolute;left:60%;bottom:-22%;padding:7px 13px;border-radius:14px;background:var(--cream);border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:15px;white-space:nowrap;opacity:0;transform:translateY(-8px) rotate(-6deg) scale(.9);transition:opacity .2s ease, transform .28s cubic-bezier(.2,1.4,.4,1);pointer-events:none">Woof!<span style="position:absolute;left:10px;top:-8px;width:12px;height:12px;background:var(--cream);border-left:2.5px solid var(--ink);border-top:2.5px solid var(--ink);transform:rotate(45deg)"></span></div>
+          </div>
+          <div style="position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:4px 9px;border-radius:999px;background:var(--cream);color:var(--ink);border:2px solid var(--ink);font-family:'Nunito Sans',sans-serif;font-size:8px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;box-shadow:2px 2px 0 var(--ink)">Food</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--deep);border-bottom:2px solid var(--ink);color:var(--cream)">
+  <div style="max-width:1080px;margin:0 auto;padding:clamp(52px,6vw,84px) 28px">
+    <p data-reveal style="margin:0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(22px,2.7vw,36px);line-height:1.28;letter-spacing:-.2px">“Spay and neutering is the most effective way to solve the problem of over-population of dogs and cats in El Salvador.”</p>
+    <p data-reveal style="margin:26px 0 0;font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(251,243,231,.62)">Nina To The Rescue</p>
+  </div>
+</section>
+
+<section id="about" style="background:var(--cream);border-bottom:2px solid var(--ink)">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,104px) 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(36px,5vw,72px);align-items:start">
+    <div data-reveal="left" style="position:relative;border:2.5px solid var(--ink);border-radius:28px;overflow:hidden;box-shadow:10px 10px 0 var(--orange);aspect-ratio:4/5;background:#EFE4D2">
+      <image-slot id="nina-about" shape="rect" placeholder="Photo: team caring for animals" src="assets/photos/IMG_7882.jpg"></image-slot>
+    </div>
+    <div>
+      <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--orange)">About us</span>
+      <h2 data-reveal style="margin:14px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(26px,3.1vw,40px);line-height:1.1;letter-spacing:-.6px">Veterinary care for the animals who have no one.</h2>
+      <p data-reveal style="margin:22px 0 0;font-size:17.5px;line-height:1.62;font-weight:500;color:rgba(23,21,18,.8)">Nina To The Rescue is a non-profit organization focused on providing veterinary care to animals in need in El Salvador. We work where care is hardest to reach: free and low-cost surgery, vaccination and treatment for street animals and for families who cannot afford a clinic.</p>
+      <div data-reveal="scale" style="margin-top:34px;border:2.5px solid var(--ink);border-radius:26px;background:var(--cream);box-shadow:8px 8px 0 var(--deep);padding:clamp(24px,3vw,36px)">
+        <h3 style="margin:0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(20px,2vw,26px);line-height:1.15">Our mission</h3>
+        <p style="margin:16px 0 0;font-size:16.5px;line-height:1.62;font-weight:500;color:rgba(23,21,18,.82)">To help create a world where, within our lifetime, we see meaningful and lasting change in the way humans treat animals — with greater responsibility, compassion, empathy and respect.</p>
+        <p style="margin:14px 0 0;font-size:16.5px;line-height:1.62;font-weight:500;color:rgba(23,21,18,.82)">We strive not only to transform the lives of animals, but also to transform the way people understand the human-animal relationship, recognizing that the well-being of animals and a healthy, respectful relationship between humans and animals are essential to building a more compassionate and responsible society.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="background:#123252;color:var(--cream);border-bottom:2px solid var(--ink)">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,104px) 28px">
+    <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--orange)">Our work</span>
+    <h2 data-reveal style="margin:14px 0 0;max-width:20ch;font-family:'Ultra',serif;font-weight:400;font-size:clamp(26px,3.3vw,44px);line-height:1.1;letter-spacing:-.6px">We are announcing our first Mega Spay &amp; Neuter Campaign in El Salvador.</h2>
+
+    <div data-reveal="scale" style="margin-top:clamp(36px,4vw,56px);border:2.5px solid var(--cream);border-radius:32px;background:var(--orange);box-shadow:12px 12px 0 var(--deep);overflow:hidden;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+      <div style="padding:clamp(28px,3.4vw,48px)">
+        <span style="display:inline-block;padding:7px 14px;border-radius:999px;background:var(--cream);color:var(--ink);font-size:11px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase">Next campaign</span>
+        <h3 style="margin:20px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(24px,2.7vw,34px);line-height:1.12;letter-spacing:-.5px">Campaña Dr. Jeff por el Bienestar Animal</h3>
+        <p style="margin:18px 0 0;font-size:17px;line-height:1.55;font-weight:600;color:rgba(23,21,18,.82)">A mega spay and neuter campaign in El Salvador, led by Dr. Jeff Young.</p>
+        <div style="margin-top:30px;display:flex;flex-wrap:wrap;gap:13px">
+          <a href="#donate" style="padding:16px 30px;border-radius:999px;background:var(--ink);color:var(--cream);border:2.5px solid var(--ink);box-shadow:5px 5px 0 var(--cream);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:18px;transition:transform .16s ease, box-shadow .16s ease" style-hover="transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--cream);color:var(--cream)" style-active="transform:translate(3px,3px);box-shadow:1px 1px 0 var(--cream)">Donate</a>
+          <a href="#campaign" style="padding:16px 28px;border-radius:999px;background:transparent;color:var(--ink);border:2.5px solid var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:18px;transition:background .18s ease,color .18s ease" style-hover="background:var(--cream);color:var(--ink)">About the campaign →</a>
+        </div>
+      </div>
+      <div style="position:relative;min-height:280px;border-left:2.5px solid var(--ink);background:#EFE4D2">
+        <image-slot id="nina-campaign" shape="rect" placeholder="Photo: spay &amp; neuter campaign day" src="assets/photos/IMG_7879.jpg"></image-slot>
+      </div>
+    </div>
+
+    <div id="campaign" style="margin-top:clamp(48px,6vw,88px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,4vw,60px);align-items:center">
+      <div data-reveal="left" style="position:relative;border:2.5px solid var(--cream);border-radius:28px;overflow:hidden;aspect-ratio:1;background:#1B4166">
+        <image-slot id="nina-drjeff" shape="rect" placeholder="Portrait of Dr. Jeff Young" src="assets/photos/dr-jeff.webp"></image-slot>
+      </div>
+      <div>
+        <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--orange)">Meet our lead veterinarian</span>
+        <h3 data-reveal style="margin:14px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(24px,2.6vw,32px);line-height:1.12;letter-spacing:-.5px">Dr. Jeff Young</h3>
+        <p data-reveal style="margin:18px 0 0;font-size:17px;line-height:1.6;font-weight:500;color:rgba(251,243,231,.82)">We are honored to welcome Dr. Jeff Young, widely known as “Dr. Jeff: Rocky Mountain Vet,” as the lead veterinarian for our first campaign in El Salvador. With decades dedicated to veterinary medicine, accessible care, spay and neuter initiatives and animal welfare, Dr. Jeff has inspired people around the world through his commitment to improving the lives of animals.</p>
+        <p data-reveal style="margin:16px 0 0;font-size:17px;line-height:1.6;font-weight:500;color:rgba(251,243,231,.82)">Our El Salvador campaign, “Dr. Jeff por el Bienestar Animal,” is named in recognition of his extraordinary dedication and decades of service to animals and the communities that care for them. We are deeply honored to have him lead this important first chapter of our mission.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="partners" style="background:var(--cream);border-bottom:2px solid var(--ink)">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,104px) 28px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,4vw,60px);align-items:end">
+      <div>
+        <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--orange)">Partners</span>
+        <h2 data-reveal style="margin:14px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(26px,3.1vw,40px);line-height:1.1;letter-spacing:-.6px">No one saves animals alone.</h2>
+      </div>
+      <p data-reveal style="margin:0;font-size:17px;line-height:1.6;font-weight:500;color:rgba(23,21,18,.78)">Clinics, veterinarians, brands and volunteers who make each campaign possible. Want to join the next one?
+        <a href="mailto:hello@ninatotherescue.org" style="font-weight:800;border-bottom:2.5px solid var(--orange)">Become a partner</a>
+      </p>
+    </div>
+    <div data-reveal="scale" style="margin-top:clamp(32px,4vw,54px);display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px">
+      <div style="border:2.5px solid var(--ink);border-radius:22px;background:var(--cream);height:150px;padding:16px;transition:transform .2s ease, box-shadow .2s ease;box-shadow:0 0 0 var(--deep)" style-hover="transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--deep)">
+        <image-slot id="nina-partner-1" shape="rounded" radius="12" fit="contain" placeholder="Partner logo"></image-slot>
+      </div>
+      <div style="border:2.5px solid var(--ink);border-radius:22px;background:var(--cream);height:150px;padding:16px;transition:transform .2s ease, box-shadow .2s ease;box-shadow:0 0 0 var(--deep)" style-hover="transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--deep)">
+        <image-slot id="nina-partner-2" shape="rounded" radius="12" fit="contain" placeholder="Partner logo"></image-slot>
+      </div>
+      <div style="border:2.5px solid var(--ink);border-radius:22px;background:var(--cream);height:150px;padding:16px;transition:transform .2s ease, box-shadow .2s ease;box-shadow:0 0 0 var(--deep)" style-hover="transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--deep)">
+        <image-slot id="nina-partner-3" shape="rounded" radius="12" fit="contain" placeholder="Partner logo"></image-slot>
+      </div>
+      <div style="border:2.5px solid var(--ink);border-radius:22px;background:var(--cream);height:150px;padding:16px;transition:transform .2s ease, box-shadow .2s ease;box-shadow:0 0 0 var(--deep)" style-hover="transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--deep)">
+        <image-slot id="nina-partner-4" shape="rounded" radius="12" fit="contain" placeholder="Partner logo"></image-slot>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="donate" style="position:relative;background:var(--orange);border-bottom:2px solid var(--ink);overflow:hidden">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,104px) 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,4vw,60px);align-items:center">
+    <div>
+      <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--deep)">Donate</span>
+      <h2 data-reveal style="margin:14px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(28px,3.6vw,48px);line-height:1.08;letter-spacing:-.7px">Your donation becomes surgeries, vaccines and care.</h2>
+      <p data-reveal style="margin:20px 0 0;max-width:44ch;font-size:17.5px;line-height:1.55;font-weight:600;color:rgba(23,21,18,.8)">Every contribution goes directly to the veterinary care behind the “Dr. Jeff por el Bienestar Animal” campaign.</p>
+      <div data-reveal style="margin-top:32px;display:flex;flex-wrap:wrap;gap:14px">
+        <a href="#" style="padding:18px 34px;border-radius:999px;background:var(--ink);color:var(--cream);border:2.5px solid var(--ink);box-shadow:6px 6px 0 var(--cream);font-family:'Ultra',serif;font-weight:400;font-size:16px;transition:transform .16s ease, box-shadow .16s ease" style-hover="transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--cream);color:var(--cream)" style-active="transform:translate(4px,4px);box-shadow:1px 1px 0 var(--cream)">Donate now</a>
+        <a href="mailto:hello@ninatotherescue.org" style="padding:18px 30px;border-radius:999px;color:var(--ink);border:2.5px solid var(--ink);font-family:'Ultra',serif;font-weight:400;font-size:16px;transition:background .18s ease,color .18s ease" style-hover="background:var(--cream);color:var(--ink)">Donate in kind</a>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center">
+      <div data-orb data-sound="Woof!" data-float="7.6s" style="position:relative;width:min(100%,380px)">
+        <div data-orb-inner style="position:relative;width:100%;aspect-ratio:1;transition:transform .45s cubic-bezier(.2,.8,.2,1)">
+          <div style="position:absolute;inset:0;border-radius:50%;background:var(--cream);border:2.5px solid var(--ink);box-shadow:10px 10px 0 var(--deep);overflow:hidden">
+            <img src="assets/nina-avatar.png" alt="Nina" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08)">
+          </div>
+          <div data-bubble style="position:absolute;left:66%;top:-9%;padding:9px 16px;border-radius:16px;background:var(--cream);border:2.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:19px;white-space:nowrap;opacity:0;transform:translateY(8px) rotate(-5deg) scale(.9);transition:opacity .2s ease, transform .28s cubic-bezier(.2,1.4,.4,1);pointer-events:none">Woof!<span style="position:absolute;left:14px;bottom:-10px;width:14px;height:14px;background:var(--cream);border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg)"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="background:var(--ink);color:var(--cream)">
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(40px,5vw,64px) 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;align-items:start">
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="display:block;width:52px;height:52px;border-radius:50%;border:2.5px solid var(--cream);background:var(--cream);overflow:hidden;flex:0 0 auto">
+        <img src="assets/nina-mark.png" alt="Nina To The Rescue" style="display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.02)">
+      </span>
+      <span style="display:block;line-height:1">
+        <span style="display:block;font-family:'Ultra',serif;font-weight:400;font-size:16px">Nina To The Rescue</span>
+        <span style="display:block;margin-top:4px;font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:rgba(251,243,231,.6)">Humans saving animals</span>
+      </span>
+    </div>
+    <nav style="display:flex;flex-direction:column;gap:10px;font-weight:700;font-size:15px">
+      <a href="#about" style="color:rgba(251,243,231,.78)" style-hover="color:var(--orange)">About Us</a>
+      <a href="#work" style="color:rgba(251,243,231,.78)" style-hover="color:var(--orange)">Our Work</a>
+      <a href="#partners" style="color:rgba(251,243,231,.78)" style-hover="color:var(--orange)">Partners</a>
+      <a href="#donate" style="color:rgba(251,243,231,.78)" style-hover="color:var(--orange)">Donate</a>
+    </nav>
+    <div style="font-size:15px;line-height:1.6;color:rgba(251,243,231,.7);font-weight:500">
+      El Salvador<br>
+      <a href="mailto:hello@ninatotherescue.org" style="color:var(--cream);border-bottom:2px solid var(--orange)">hello@ninatotherescue.org</a>
+      <p style="margin:18px 0 0;font-size:12.5px;color:rgba(251,243,231,.45)">© 2026 Nina To The Rescue. Logo illustration by Nina.</p>
+      <p style="margin:8px 0 0;font-size:12.5px;color:rgba(251,243,231,.35)">Hecho con amor por <a href="https://www.empatialab.com/" target="_blank" rel="noopener noreferrer" style="color:rgba(251,243,231,.55);border-bottom:1px solid rgba(251,243,231,.25);transition:color .18s,border-color .18s" style-hover="color:var(--orange);border-color:var(--orange)">EmpatíaLab</a>.</p>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;deepTone&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#14453A&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#14453A&quot;,&quot;#1D3A5F&quot;,&quot;#5A2016&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Theme&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    this.applyTheme();
+    this.setupReveal();
+    this.setupNav();
+  }
+  componentDidUpdate() { this.applyTheme(); }
+  componentWillUnmount() {
+    if (this._obs) this._obs.disconnect();
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+  }
+  applyTheme() {
+    const deep = this.props.deepTone;
+    if (deep) document.body.style.setProperty('--deep', deep);
+  }
+  setupReveal() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    const show = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; el.style.willChange = 'auto'; };
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (this.props.motion === false || prefersReduced || !('IntersectionObserver' in window)) {
+      els.forEach(show);
+      this.setupOrbs();
+      return;
+    }
+    const initTransform = { left: 'translateX(-56px)', scale: 'scale(0.92) translateY(28px)', up: 'translateY(48px)' };
+    // Stagger resets per section so delays stay tight
+    const sections = Array.from(document.querySelectorAll('section, footer'));
+    sections.forEach((sec) => {
+      Array.from(sec.querySelectorAll('[data-reveal]')).forEach((el, i) => {
+        const type = el.getAttribute('data-reveal') || 'up';
+        el.style.opacity = '0';
+        el.style.transform = initTransform[type] || initTransform.up;
+        const delay = Math.min(i * 100, 400);
+        el.style.transition = 'opacity .75s cubic-bezier(.16,.84,.44,1) ' + delay + 'ms, transform .75s cubic-bezier(.16,.84,.44,1) ' + delay + 'ms';
+      });
+    });
+    this._obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { show(e.target); this._obs.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el) => this._obs.observe(el));
+    setTimeout(() => els.forEach(show), 4000);
+    this.setupOrbs();
+  }
+  setupOrbs() {
+    const orbs = Array.from(document.querySelectorAll('[data-orb]'));
+    const motion = this.props.motion !== false;
+    orbs.forEach((orb, i) => {
+      const inner = orb.querySelector('[data-orb-inner]');
+      const bubble = orb.querySelector('[data-bubble]');
+      if (motion) {
+        orb.style.animation = 'orbFloat ' + (orb.getAttribute('data-float') || '7s') + ' ease-in-out infinite';
+        orb.style.animationDelay = (i * -1.35) + 's';
+      }
+      const rest = bubble ? bubble.style.transform : '';
+      const shift = [[-10, -8], [8, -10], [-9, 9], [-11, -7], [10, 8]][i % 5];
+      orb.addEventListener('mouseenter', () => {
+        if (inner) inner.style.transform = 'translate(' + shift[0] + 'px,' + shift[1] + 'px) scale(1.05)';
+        if (bubble) { bubble.style.opacity = '1'; bubble.style.transform = rest.replace(/translateY\([^)]*\)/, 'translateY(0)').replace(/scale\([^)]*\)/, 'scale(1)'); }
+      });
+      orb.addEventListener('mouseleave', () => {
+        if (inner) inner.style.transform = 'none';
+        if (bubble) { bubble.style.opacity = '0'; bubble.style.transform = rest; }
+      });
+    });
+  }
+  setupNav() {
+    const nav = document.getElementById('nav');
+    const links = Array.from(document.querySelectorAll('[data-navlink]'));
+    const sections = links.map((l) => document.querySelector(l.getAttribute('href')));
+    const orbWrap = document.getElementById('heroOrbs');
+    this._onScroll = () => {
+      const y = window.scrollY || 0;
+      if (nav) {
+        const tight = y > 24;
+        nav.style.boxShadow = tight ? '0 10px 24px rgba(23,21,18,.10)' : 'none';
+        nav.firstElementChild.style.paddingTop = tight ? '8px' : '14px';
+        nav.firstElementChild.style.paddingBottom = tight ? '8px' : '14px';
+      }
+      if (orbWrap && y < 900) orbWrap.style.transform = 'translateY(' + (-y * 0.05) + 'px)';
+      let active = -1;
+      sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top <= 140) active = i; });
+      links.forEach((l, i) => {
+        l.style.background = i === active ? 'rgba(225,86,14,.14)' : 'transparent';
+        l.style.color = i === active ? 'var(--orange)' : 'var(--ink)';
+      });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

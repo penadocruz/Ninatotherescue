@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# DC Canvas internals
+.thumbnail
+.claude/
+
+# Large design exports (not needed in repo)
+*for Figma.html
+
+# Editor
+*.swp
+*.swo
+.idea/
+.vscode/
