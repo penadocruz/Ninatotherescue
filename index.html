@@ -19,9 +19,9 @@ html { scroll-behavior: smooth; cursor: url("assets/paw-cursor.svg") 16 16, auto
 *, a, button { cursor: url("assets/paw-cursor.svg") 16 16, auto !important; }
 body {
   --ink: #171512;
-  --orange: #E1560E;
+  --orange: #6B3FA0;
   --cream: #FBF3E7;
-  --deep: #14453A;
+  --deep: #2A1760;
   margin: 0;
   background: var(--cream);
   color: var(--ink);
@@ -121,7 +121,7 @@ a:hover { color: var(--ink); }
 <template id="__bundler_thumbnail">
   <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
     <rect width="120" height="120" fill="#FBF3E7"></rect>
-    <circle cx="60" cy="60" r="34" fill="#E1560E"></circle>
+    <circle cx="60" cy="60" r="34" fill="#6B3FA0"></circle>
     <circle cx="49" cy="54" r="6" fill="#171512"></circle>
     <circle cx="71" cy="54" r="6" fill="#171512"></circle>
     <circle cx="60" cy="72" r="9" fill="#171512"></circle>
@@ -150,11 +150,22 @@ a:hover { color: var(--ink); }
   </div>
 </header>
 
-<section id="top" style="position:relative;overflow:hidden;background:var(--cream);border-bottom:2px solid var(--ink)">
-  <div style="max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,84px) 28px clamp(56px,7vw,96px);display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:clamp(32px,5vw,64px);align-items:center">
+<section id="top" style="position:relative;overflow:hidden;background:linear-gradient(to bottom, #8c81bd 0%, #d693b1 50%, #ffccab 100%);border-bottom:2px solid var(--ink)">
+
+  <!-- Cloud 1: behind photo cluster -->
+  <svg id="hero-cloud-1" preserveAspectRatio="none" overflow="visible" style="display:block;position:absolute;left:44%;top:32%;width:36%;pointer-events:none;z-index:1;will-change:transform" viewBox="0 0 453.257 120.803" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.9057 120.634C13.279 120.745 12.6326 120.803 11.9798 120.803C5.36642 120.803 0 115.137 0 108.158C0 102.55 3.45684 97.7969 8.23896 96.1419C10.4456 80.3136 23.1337 68.1738 38.4365 68.1738C41.6322 68.1738 44.7137 68.6994 47.6091 69.6754C56.4552 54.4934 70.8701 44.5994 87.1391 44.5994C98.6031 44.5994 109.147 49.5121 117.467 57.7282C123.477 38.9849 136.051 26.065 150.573 26.065C162.742 26.065 173.544 35.1298 180.258 49.1041C189.774 20.3167 212.702 0 239.446 0C267.668 0 291.641 22.6212 300.082 53.9515C308.615 48.8527 318.365 45.9606 328.729 45.9606C353.472 45.9606 374.755 62.4483 384.13 86.039C385.801 85.8138 387.499 85.6963 389.229 85.6963C401.597 85.6963 412.643 91.6633 419.838 100.973C422.531 99.9186 425.436 99.3506 428.472 99.3506C440.638 99.3506 450.815 108.553 453.257 120.803H14.0199C13.9808 120.745 13.9449 120.692 13.9057 120.634Z" fill="white" fill-opacity="0.5"/></svg>
+
+  <!-- Cloud 2: bottom right -->
+  <svg id="hero-cloud-2" preserveAspectRatio="none" overflow="visible" style="display:block;position:absolute;right:0;bottom:10%;width:29%;pointer-events:none;z-index:1;will-change:transform" viewBox="0 0 374.192 83.9717" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.4981 83.9717C5.15201 83.9717 0 78.9838 0 72.8407C0 66.6954 5.15201 61.7075 11.4981 61.7075C13.9856 61.7075 16.2895 62.474 18.1724 63.7761C15.8166 54.2235 22.5319 43.5653 33.9285 39.344C41.0066 36.7226 48.3308 37.161 53.9277 39.9723C55.1757 29.8087 63.6249 19.8264 76.086 15.2099C89.0222 10.4206 102.442 12.8325 109.868 20.3727C124.587 7.7021 143.978 0 165.214 0C192.09 0 216.011 12.3359 231.244 31.4648C236.718 29.9101 242.516 29.0767 248.508 29.0767C265.916 29.0767 281.624 36.1094 292.725 47.3764C297.754 44.9257 303.42 43.5502 309.412 43.5502C319.932 43.5502 329.456 47.7997 336.288 54.6489C339.208 52.2262 342.965 50.7665 347.061 50.7665C354.314 50.7665 360.494 55.329 362.839 61.7097C369.118 61.7831 374.192 66.7429 374.192 72.8407C374.192 78.6102 369.647 83.3606 363.838 83.9177V83.9717H11.4981Z" fill="white" fill-opacity="0.5"/></svg>
+
+  <!-- Cloud 3: bottom left -->
+  <svg id="hero-cloud-3" preserveAspectRatio="none" overflow="visible" style="display:block;position:absolute;left:0;bottom:14%;width:27%;pointer-events:none;z-index:1;will-change:transform" viewBox="0 0 341.574 84.8734" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.333 84.4774C10.2224 84.4814 10.1099 84.4814 9.99729 84.4814C4.47898 84.4814 0 80.3161 0 75.1837C0 70.0514 4.47898 65.884 9.99729 65.884C11.1874 65.884 12.3313 66.079 13.3887 66.4348C17.8234 57.8407 26.1582 52.045 35.7012 52.045C41.7502 52.045 47.3147 54.377 51.7073 58.273C54.8775 49.3793 61.5136 43.2559 69.1769 43.2559C75.5999 43.2559 81.2991 47.558 84.8453 54.182C84.9217 53.9709 85.0001 53.7638 85.0805 53.5527C84.2201 51.068 83.7637 48.4626 83.7637 45.7769C83.7637 28.6027 102.474 14.6612 125.52 14.6612C145.338 14.6612 161.949 24.9761 166.215 38.783C170.816 27.2196 178.747 19.5764 187.749 19.5764C196.249 19.5764 203.79 26.3854 208.482 36.8792C215.126 15.2543 231.138 0 249.814 0C272.277 0 290.882 22.0672 293.98 50.7323C297.526 48.4747 301.555 47.1921 305.827 47.1921C316.48 47.1921 325.631 55.1429 329.541 66.471C330.2 66.3424 330.88 66.276 331.575 66.276C337.091 66.276 341.574 70.4434 341.574 75.5757C341.574 80.7061 337.091 84.8734 331.575 84.8734C331.414 84.8734 331.255 84.8694 331.095 84.8634C331.095 84.8674 331.095 84.8694 331.095 84.8734H109.741C109.727 84.7408 109.715 84.6101 109.703 84.4774H10.333Z" fill="white" fill-opacity="0.5"/></svg>
+
+
+  <div style="position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,84px) 28px clamp(56px,7vw,96px);display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:clamp(32px,5vw,64px);align-items:center">
     <div>
-      <span data-reveal style="display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;border:2px solid var(--ink);background:var(--cream);font-size:11.5px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase">Non-profit · El Salvador</span>
-      <h1 data-reveal style="margin:22px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(34px,4.9vw,62px);line-height:1.03;letter-spacing:-1px">Humans<br>saving <span style="color:var(--orange)">animals</span>.</h1>
+      <span data-reveal style="display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;border:2px solid var(--ink);background:var(--cream);font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--ink)">Non-profit · El Salvador</span>
+      <h1 data-reveal style="margin:22px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(34px,4.9vw,62px);line-height:1.03;letter-spacing:-1px">Humans<br>saving <span style="color:var(--deep)">animals</span>.</h1>
       <p data-reveal style="margin:24px 0 0;max-width:30ch;font-size:clamp(17px,1.3vw,20px);line-height:1.5;font-weight:600;color:rgba(23,21,18,.78)">Nina To The Rescue is a non-profit organization focused on providing veterinary care to animals in need in El Salvador.</p>
       <div data-reveal style="margin-top:34px;display:flex;flex-wrap:wrap;gap:14px">
         <a href="#donate" style="padding:17px 32px;border-radius:999px;background:var(--orange);color:var(--cream);border:2.5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:19px;transition:transform .16s ease, box-shadow .16s ease" style-hover="transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink);color:var(--cream)" style-active="transform:translate(4px,4px);box-shadow:1px 1px 0 var(--ink)">Donate</a>
@@ -191,7 +202,7 @@ a:hover { color: var(--ink); }
             </div>
             <div data-bubble style="position:absolute;right:66%;top:-20%;padding:7px 13px;border-radius:14px;background:var(--orange);color:var(--cream);border:2.5px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:15px;white-space:nowrap;opacity:0;transform:translateY(8px) rotate(-7deg) scale(.9);transition:opacity .2s ease, transform .28s cubic-bezier(.2,1.4,.4,1);pointer-events:none">Meow!<span style="position:absolute;right:10px;bottom:-8px;width:12px;height:12px;background:var(--orange);border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg)"></span></div>
           </div>
-          <div style="position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:4px 9px;border-radius:999px;background:var(--deep);color:var(--cream);border:2px solid var(--ink);font-family:'Nunito Sans',sans-serif;font-size:8px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;box-shadow:2px 2px 0 var(--ink)">Treatment</div>
+          <div style="position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:4px 9px;border-radius:999px;background:var(--orange);color:var(--cream);border:2px solid var(--ink);font-family:'Nunito Sans',sans-serif;font-size:8px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;box-shadow:2px 2px 0 var(--ink)">Treatment</div>
         </div>
 
         <div data-orb data-sound="Meow!" data-float="6.8s" style="position:absolute;left:76%;top:56%;width:24%">
@@ -221,7 +232,7 @@ a:hover { color: var(--ink); }
 
 <section style="background:var(--deep);border-bottom:2px solid var(--ink);color:var(--cream)">
   <div style="max-width:1080px;margin:0 auto;padding:clamp(52px,6vw,84px) 28px">
-    <p data-reveal style="margin:0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(22px,2.7vw,36px);line-height:1.28;letter-spacing:-.2px">“Spay and neutering is the most effective way to solve the problem of over-population of dogs and cats in El Salvador.”</p>
+    <p data-reveal style="margin:0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(22px,2.7vw,36px);line-height:1.28;letter-spacing:-.2px">"Spay and neutering is the most effective way to solve the problem of over-population of dogs and cats in El Salvador."</p>
     <p data-reveal style="margin:26px 0 0;font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(251,243,231,.62)">Nina To The Rescue</p>
   </div>
 </section>
@@ -229,7 +240,7 @@ a:hover { color: var(--ink); }
 <section id="about" style="background:var(--cream);border-bottom:2px solid var(--ink)">
   <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,104px) 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(36px,5vw,72px);align-items:start">
     <div data-reveal="left" style="position:relative;border:2.5px solid var(--ink);border-radius:28px;overflow:hidden;box-shadow:10px 10px 0 var(--orange);aspect-ratio:4/5;background:#EFE4D2">
-      <image-slot id="nina-about" shape="rect" placeholder="Photo: team caring for animals" src="assets/photos/IMG_7882.jpg"></image-slot>
+      <image-slot id="nina-about" shape="rect" placeholder="Photo: Adriana Cáceres, co-founder" src="assets/photos/IMG_8294.jpg"></image-slot>
     </div>
     <div>
       <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--orange)">About us</span>
@@ -244,19 +255,19 @@ a:hover { color: var(--ink); }
   </div>
 </section>
 
-<section id="work" style="background:#123252;color:var(--cream);border-bottom:2px solid var(--ink)">
+<section id="work" style="background:#14453A;color:var(--cream);border-bottom:2px solid var(--ink)">
   <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,104px) 28px">
-    <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--orange)">Our work</span>
+    <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(251,243,231,.7)">Our work</span>
     <h2 data-reveal style="margin:14px 0 0;max-width:20ch;font-family:'Ultra',serif;font-weight:400;font-size:clamp(26px,3.3vw,44px);line-height:1.1;letter-spacing:-.6px">We are announcing our first Mega Spay &amp; Neuter Campaign in El Salvador.</h2>
 
     <div data-reveal="scale" style="margin-top:clamp(36px,4vw,56px);border:2.5px solid var(--cream);border-radius:32px;background:var(--orange);box-shadow:12px 12px 0 var(--deep);overflow:hidden;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
       <div style="padding:clamp(28px,3.4vw,48px)">
         <span style="display:inline-block;padding:7px 14px;border-radius:999px;background:var(--cream);color:var(--ink);font-size:11px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase">Next campaign</span>
         <h3 style="margin:20px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(24px,2.7vw,34px);line-height:1.12;letter-spacing:-.5px">Campaña Dr. Jeff por el Bienestar Animal</h3>
-        <p style="margin:18px 0 0;font-size:17px;line-height:1.55;font-weight:600;color:rgba(23,21,18,.82)">A mega spay and neuter campaign in El Salvador, led by Dr. Jeff Young.</p>
+        <p style="margin:18px 0 0;font-size:17px;line-height:1.55;font-weight:600;color:rgba(251,243,231,.88)">A mega spay and neuter campaign in El Salvador, led by Dr. Jeff Young.</p>
         <div style="margin-top:30px;display:flex;flex-wrap:wrap;gap:13px">
           <a href="#donate" style="padding:16px 30px;border-radius:999px;background:var(--ink);color:var(--cream);border:2.5px solid var(--ink);box-shadow:5px 5px 0 var(--cream);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:18px;transition:transform .16s ease, box-shadow .16s ease" style-hover="transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--cream);color:var(--cream)" style-active="transform:translate(3px,3px);box-shadow:1px 1px 0 var(--cream)">Donate</a>
-          <a href="#campaign" style="padding:16px 28px;border-radius:999px;background:transparent;color:var(--ink);border:2.5px solid var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:18px;transition:background .18s ease,color .18s ease" style-hover="background:var(--cream);color:var(--ink)">About the campaign →</a>
+          <a href="#campaign" style="padding:16px 28px;border-radius:999px;background:transparent;color:var(--cream);border:2.5px solid var(--cream);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:18px;transition:background .18s ease,color .18s ease" style-hover="background:var(--cream);color:var(--ink)">About the campaign →</a>
         </div>
       </div>
       <div style="position:relative;min-height:280px;border-left:2.5px solid var(--ink);background:#EFE4D2">
@@ -265,14 +276,14 @@ a:hover { color: var(--ink); }
     </div>
 
     <div id="campaign" style="margin-top:clamp(48px,6vw,88px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,4vw,60px);align-items:center">
-      <div data-reveal="left" style="position:relative;border:2.5px solid var(--cream);border-radius:28px;overflow:hidden;aspect-ratio:1;background:#1B4166">
+      <div data-reveal="left" style="position:relative;border:2.5px solid var(--cream);border-radius:28px;overflow:hidden;aspect-ratio:1;background:#0F3028">
         <image-slot id="nina-drjeff" shape="rect" placeholder="Portrait of Dr. Jeff Young" src="assets/photos/dr-jeff.webp"></image-slot>
       </div>
       <div>
-        <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--orange)">Meet our lead veterinarian</span>
+        <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(251,243,231,.7)">Meet our lead veterinarian</span>
         <h3 data-reveal style="margin:14px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(24px,2.6vw,32px);line-height:1.12;letter-spacing:-.5px">Dr. Jeff Young</h3>
-        <p data-reveal style="margin:18px 0 0;font-size:17px;line-height:1.6;font-weight:500;color:rgba(251,243,231,.82)">We are honored to welcome Dr. Jeff Young, widely known as “Dr. Jeff: Rocky Mountain Vet,” as the lead veterinarian for our first campaign in El Salvador. With decades dedicated to veterinary medicine, accessible care, spay and neuter initiatives and animal welfare, Dr. Jeff has inspired people around the world through his commitment to improving the lives of animals.</p>
-        <p data-reveal style="margin:16px 0 0;font-size:17px;line-height:1.6;font-weight:500;color:rgba(251,243,231,.82)">Our El Salvador campaign, “Dr. Jeff por el Bienestar Animal,” is named in recognition of his extraordinary dedication and decades of service to animals and the communities that care for them. We are deeply honored to have him lead this important first chapter of our mission.</p>
+        <p data-reveal style="margin:18px 0 0;font-size:17px;line-height:1.6;font-weight:500;color:rgba(251,243,231,.82)">We are honored to welcome Dr. Jeff Young, widely known as "Dr. Jeff: Rocky Mountain Vet," as the lead veterinarian for our first campaign in El Salvador. With decades dedicated to veterinary medicine, accessible care, spay and neuter initiatives and animal welfare, Dr. Jeff has inspired people around the world through his commitment to improving the lives of animals.</p>
+        <p data-reveal style="margin:16px 0 0;font-size:17px;line-height:1.6;font-weight:500;color:rgba(251,243,231,.82)">Our El Salvador campaign, "Dr. Jeff por el Bienestar Animal," is named in recognition of his extraordinary dedication and decades of service to animals and the communities that care for them. We are deeply honored to have him lead this important first chapter of our mission.</p>
       </div>
     </div>
   </div>
@@ -286,21 +297,18 @@ a:hover { color: var(--ink); }
         <h2 data-reveal style="margin:14px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(26px,3.1vw,40px);line-height:1.1;letter-spacing:-.6px">No one saves animals alone.</h2>
       </div>
       <p data-reveal style="margin:0;font-size:17px;line-height:1.6;font-weight:500;color:rgba(23,21,18,.78)">Clinics, veterinarians, brands and volunteers who make each campaign possible. Want to join the next one?
-        <a href="mailto:hello@ninatotherescue.org" style="font-weight:800;border-bottom:2.5px solid var(--orange)">Become a partner</a>
+        <a href="mailto:adriana.caceres@ninatotherescue.org" style="font-weight:800;border-bottom:2.5px solid var(--orange)">Become a partner</a>
       </p>
     </div>
-    <div data-reveal="scale" style="margin-top:clamp(32px,4vw,54px);display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px">
-      <div style="border:2.5px solid var(--ink);border-radius:22px;background:var(--cream);height:150px;padding:16px;transition:transform .2s ease, box-shadow .2s ease;box-shadow:0 0 0 var(--deep)" style-hover="transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--deep)">
-        <image-slot id="nina-partner-1" shape="rounded" radius="12" fit="contain" placeholder="Partner logo"></image-slot>
+    <div data-reveal="scale" style="margin-top:clamp(32px,4vw,54px);display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px">
+      <div style="border:2.5px solid var(--ink);border-radius:22px;background:#fff;height:180px;padding:20px;display:flex;align-items:center;justify-content:center;transition:transform .2s ease, box-shadow .2s ease;box-shadow:0 0 0 var(--deep)" style-hover="transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--deep)">
+        <img src="assets/partners/LOGO%20(1).JPG" alt="Planned Pethood México" style="max-width:100%;max-height:100%;object-fit:contain;display:block">
       </div>
-      <div style="border:2.5px solid var(--ink);border-radius:22px;background:var(--cream);height:150px;padding:16px;transition:transform .2s ease, box-shadow .2s ease;box-shadow:0 0 0 var(--deep)" style-hover="transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--deep)">
-        <image-slot id="nina-partner-2" shape="rounded" radius="12" fit="contain" placeholder="Partner logo"></image-slot>
+      <div style="border:2.5px solid var(--ink);border-radius:22px;background:#fff;height:180px;padding:20px;display:flex;align-items:center;justify-content:center;transition:transform .2s ease, box-shadow .2s ease;box-shadow:0 0 0 var(--deep)" style-hover="transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--deep)">
+        <img src="assets/partners/WhatsApp%20Image%202026-06-28%20at%2020.11.32.jpeg" alt="Planned Pethood International & Intermountain Humane" style="max-width:100%;max-height:100%;object-fit:contain;display:block">
       </div>
-      <div style="border:2.5px solid var(--ink);border-radius:22px;background:var(--cream);height:150px;padding:16px;transition:transform .2s ease, box-shadow .2s ease;box-shadow:0 0 0 var(--deep)" style-hover="transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--deep)">
-        <image-slot id="nina-partner-3" shape="rounded" radius="12" fit="contain" placeholder="Partner logo"></image-slot>
-      </div>
-      <div style="border:2.5px solid var(--ink);border-radius:22px;background:var(--cream);height:150px;padding:16px;transition:transform .2s ease, box-shadow .2s ease;box-shadow:0 0 0 var(--deep)" style-hover="transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--deep)">
-        <image-slot id="nina-partner-4" shape="rounded" radius="12" fit="contain" placeholder="Partner logo"></image-slot>
+      <div style="border:2.5px solid var(--ink);border-radius:22px;background:var(--ink);height:180px;padding:24px;display:flex;align-items:center;justify-content:center;transition:transform .2s ease, box-shadow .2s ease;box-shadow:0 0 0 var(--deep)" style-hover="transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--deep)">
+        <img src="assets/partners/logo-empatia-lab.png" alt="empatíaLab" style="max-width:100%;max-height:100%;object-fit:contain;display:block">
       </div>
     </div>
   </div>
@@ -309,22 +317,17 @@ a:hover { color: var(--ink); }
 <section id="donate" style="position:relative;background:var(--orange);border-bottom:2px solid var(--ink);overflow:hidden">
   <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,104px) 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,4vw,60px);align-items:center">
     <div>
-      <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--deep)">Donate</span>
-      <h2 data-reveal style="margin:14px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(28px,3.6vw,48px);line-height:1.08;letter-spacing:-.7px">Your donation becomes surgeries, vaccines and care.</h2>
-      <p data-reveal style="margin:20px 0 0;max-width:44ch;font-size:17.5px;line-height:1.55;font-weight:600;color:rgba(23,21,18,.8)">Every contribution goes directly to the veterinary care behind the “Dr. Jeff por el Bienestar Animal” campaign.</p>
+      <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(251,243,231,.7)">Donate</span>
+      <h2 data-reveal style="margin:14px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(28px,3.6vw,48px);line-height:1.08;letter-spacing:-.7px;color:#FBF3E7">Your donation becomes surgeries, vaccines and care.</h2>
+      <p data-reveal style="margin:20px 0 0;max-width:44ch;font-size:17.5px;line-height:1.55;font-weight:600;color:rgba(251,243,231,0.82)">Every contribution goes directly to the veterinary care behind the "Dr. Jeff por el Bienestar Animal" campaign.</p>
       <div data-reveal style="margin-top:32px;display:flex;flex-wrap:wrap;gap:14px">
-        <a href="#" style="padding:18px 34px;border-radius:999px;background:var(--ink);color:var(--cream);border:2.5px solid var(--ink);box-shadow:6px 6px 0 var(--cream);font-family:'Ultra',serif;font-weight:400;font-size:16px;transition:transform .16s ease, box-shadow .16s ease" style-hover="transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--cream);color:var(--cream)" style-active="transform:translate(4px,4px);box-shadow:1px 1px 0 var(--cream)">Donate now</a>
-        <a href="mailto:hello@ninatotherescue.org" style="padding:18px 30px;border-radius:999px;color:var(--ink);border:2.5px solid var(--ink);font-family:'Ultra',serif;font-weight:400;font-size:16px;transition:background .18s ease,color .18s ease" style-hover="background:var(--cream);color:var(--ink)">Donate in kind</a>
+        <a href="https://gofund.me/4e3979c94" target="_blank" rel="noopener noreferrer" style="padding:18px 34px;border-radius:999px;background:var(--cream);color:var(--ink);border:2.5px solid var(--ink);box-shadow:6px 6px 0 var(--deep);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:18px;transition:transform .16s ease, box-shadow .16s ease" style-hover="transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--deep)" style-active="transform:translate(4px,4px);box-shadow:1px 1px 0 var(--deep)">Donate now</a>
+        <a href="mailto:adriana.caceres@ninatotherescue.org" style="padding:18px 30px;border-radius:999px;color:var(--cream);border:2.5px solid var(--cream);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:18px;transition:background .18s ease,color .18s ease" style-hover="background:var(--cream);color:var(--ink)">Donate in kind</a>
       </div>
     </div>
-    <div style="display:flex;justify-content:center">
-      <div data-orb data-sound="Woof!" data-float="7.6s" style="position:relative;width:min(100%,380px)">
-        <div data-orb-inner style="position:relative;width:100%;aspect-ratio:1;transition:transform .45s cubic-bezier(.2,.8,.2,1)">
-          <div style="position:absolute;inset:0;border-radius:50%;background:var(--cream);border:2.5px solid var(--ink);box-shadow:10px 10px 0 var(--deep);overflow:hidden">
-            <img src="assets/nina-avatar.png" alt="Nina" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08)">
-          </div>
-          <div data-bubble style="position:absolute;left:66%;top:-9%;padding:9px 16px;border-radius:16px;background:var(--cream);border:2.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:19px;white-space:nowrap;opacity:0;transform:translateY(8px) rotate(-5deg) scale(.9);transition:opacity .2s ease, transform .28s cubic-bezier(.2,1.4,.4,1);pointer-events:none">Woof!<span style="position:absolute;left:14px;bottom:-10px;width:14px;height:14px;background:var(--cream);border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg)"></span></div>
-        </div>
+    <div data-reveal="scale" style="display:flex;justify-content:center">
+      <div style="width:min(100%,440px);border:2.5px solid var(--ink);border-radius:28px;overflow:hidden;box-shadow:12px 12px 0 var(--deep)">
+        <img src="assets/logo-original.jpg" alt="Nina To The Rescue" style="display:block;width:100%;height:auto">
       </div>
     </div>
   </div>
@@ -349,7 +352,7 @@ a:hover { color: var(--ink); }
     </nav>
     <div style="font-size:15px;line-height:1.6;color:rgba(251,243,231,.7);font-weight:500">
       El Salvador<br>
-      <a href="mailto:hello@ninatotherescue.org" style="color:var(--cream);border-bottom:2px solid var(--orange)">hello@ninatotherescue.org</a>
+      <a href="mailto:adriana.caceres@ninatotherescue.org" style="color:var(--cream);border-bottom:2px solid var(--orange)">adriana.caceres@ninatotherescue.org</a>
       <p style="margin:18px 0 0;font-size:12.5px;color:rgba(251,243,231,.45)">© 2026 Nina To The Rescue. Logo illustration by Nina.</p>
       <p style="margin:8px 0 0;font-size:12.5px;color:rgba(251,243,231,.35)">Hecho con amor por <a href="https://www.empatialab.com/" target="_blank" rel="noopener noreferrer" style="color:rgba(251,243,231,.55);border-bottom:1px solid rgba(251,243,231,.25);transition:color .18s,border-color .18s" style-hover="color:var(--orange);border-color:var(--orange)">EmpatíaLab</a>.</p>
     </div>
@@ -450,6 +453,36 @@ class Component extends DCLogic {
   }
   renderVals() { return {}; }
 }
+</script>
+
+<script>
+(function() {
+  var ids = ['hero-cloud-1', 'hero-cloud-2', 'hero-cloud-3'];
+  var strengths = [0.022, 0.038, 0.028];
+  var cx = [0,0,0], cy = [0,0,0], tx = 0, ty = 0;
+
+  document.addEventListener('mousemove', function(e) {
+    var section = document.getElementById('top');
+    if (!section) return;
+    var r = section.getBoundingClientRect();
+    if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) {
+      tx = e.clientX - r.left - r.width / 2;
+      ty = e.clientY - r.top - r.height / 2;
+    } else {
+      tx = 0; ty = 0;
+    }
+  });
+
+  (function tick() {
+    for (var i = 0; i < ids.length; i++) {
+      cx[i] += (tx * strengths[i] - cx[i]) * 0.07;
+      cy[i] += (ty * strengths[i] - cy[i]) * 0.07;
+      var el = document.getElementById(ids[i]);
+      if (el) el.style.transform = 'translate(' + cx[i].toFixed(2) + 'px,' + cy[i].toFixed(2) + 'px)';
+    }
+    requestAnimationFrame(tick);
+  })();
+})();
 </script>
 </body>
 </html>
