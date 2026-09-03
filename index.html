@@ -115,6 +115,10 @@ a:hover { color: var(--ink); }
     grid-template-columns: 1fr !important;
   }
 }
+
+/* QR code: desktop only */
+.qr-desktop { display: none !important; }
+@media (min-width: 1024px) { .qr-desktop { display: flex !important; } }
 </style>
 </helmet>
 
@@ -238,18 +242,42 @@ a:hover { color: var(--ink); }
 </section>
 
 <section id="about" style="background:var(--cream);border-bottom:2px solid var(--ink)">
-  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,104px) 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(36px,5vw,72px);align-items:start">
-    <div data-reveal="left" style="position:relative;border:2.5px solid var(--ink);border-radius:28px;overflow:hidden;box-shadow:10px 10px 0 var(--orange);aspect-ratio:4/5;background:#EFE4D2">
-      <image-slot id="nina-about" shape="rect" placeholder="Photo: Adriana Cáceres, co-founder" src="assets/photos/about-us-nina.jpeg"></image-slot>
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,104px) 28px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(36px,5vw,72px);align-items:start">
+      <div data-reveal="left" style="position:relative;border:2.5px solid var(--ink);border-radius:28px;overflow:hidden;box-shadow:10px 10px 0 var(--orange);aspect-ratio:4/5;background:#EFE4D2">
+        <image-slot id="nina-about" shape="rect" placeholder="Photo: Nina To The Rescue" src="assets/photos/about-us-nina.jpeg"></image-slot>
+      </div>
+      <div>
+        <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--orange)">About us</span>
+        <h2 data-reveal style="margin:14px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(26px,3.1vw,40px);line-height:1.1;letter-spacing:-.6px">Veterinary care for the animals who have no one.</h2>
+        <p data-reveal style="margin:22px 0 0;font-size:17.5px;line-height:1.62;font-weight:500;color:rgba(23,21,18,.8)">Nina To The Rescue is a non-profit organization focused on providing veterinary care to animals in need in El Salvador. We work where care is hardest to reach: free and low-cost surgery, vaccination and treatment for street animals and for families who cannot afford a clinic.</p>
+        <div data-reveal="scale" style="margin-top:34px;border:2.5px solid var(--ink);border-radius:26px;background:var(--cream);box-shadow:8px 8px 0 var(--deep);padding:clamp(24px,3vw,36px)">
+          <h3 style="margin:0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(20px,2vw,26px);line-height:1.15">Our mission</h3>
+          <p style="margin:16px 0 0;font-size:16.5px;line-height:1.62;font-weight:500;color:rgba(23,21,18,.82)">To help create a world where, within our lifetime, we see meaningful and lasting change in the way humans treat animals — with greater responsibility, compassion, empathy and respect.</p>
+          <p style="margin:14px 0 0;font-size:16.5px;line-height:1.62;font-weight:500;color:rgba(23,21,18,.82)">We strive not only to transform the lives of animals, but also to transform the way people understand the human-animal relationship, recognizing that the well-being of animals and a healthy, respectful relationship between humans and animals are essential to building a more compassionate and responsible society.</p>
+        </div>
+      </div>
     </div>
-    <div>
-      <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--orange)">About us</span>
-      <h2 data-reveal style="margin:14px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(26px,3.1vw,40px);line-height:1.1;letter-spacing:-.6px">Veterinary care for the animals who have no one.</h2>
-      <p data-reveal style="margin:22px 0 0;font-size:17.5px;line-height:1.62;font-weight:500;color:rgba(23,21,18,.8)">Nina To The Rescue is a non-profit organization focused on providing veterinary care to animals in need in El Salvador. We work where care is hardest to reach: free and low-cost surgery, vaccination and treatment for street animals and for families who cannot afford a clinic.</p>
-      <div data-reveal="scale" style="margin-top:34px;border:2.5px solid var(--ink);border-radius:26px;background:var(--cream);box-shadow:8px 8px 0 var(--deep);padding:clamp(24px,3vw,36px)">
-        <h3 style="margin:0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(20px,2vw,26px);line-height:1.15">Our mission</h3>
-        <p style="margin:16px 0 0;font-size:16.5px;line-height:1.62;font-weight:500;color:rgba(23,21,18,.82)">To help create a world where, within our lifetime, we see meaningful and lasting change in the way humans treat animals — with greater responsibility, compassion, empathy and respect.</p>
-        <p style="margin:14px 0 0;font-size:16.5px;line-height:1.62;font-weight:500;color:rgba(23,21,18,.82)">We strive not only to transform the lives of animals, but also to transform the way people understand the human-animal relationship, recognizing that the well-being of animals and a healthy, respectful relationship between humans and animals are essential to building a more compassionate and responsible society.</p>
+
+    <div data-reveal="scale" style="margin-top:clamp(40px,5vw,64px);border:2.5px solid var(--ink);border-radius:26px;background:#2A1760;color:var(--cream);box-shadow:8px 8px 0 var(--orange);overflow:hidden;position:relative">
+      <span aria-hidden="true" style="font-family:'Ultra',serif;font-size:clamp(100px,14vw,180px);line-height:.65;color:rgba(251,243,231,.05);position:absolute;top:16px;right:32px;user-select:none;pointer-events:none">"</span>
+      <div style="padding:clamp(28px,3.5vw,52px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,3vw,48px);align-items:center;position:relative">
+        <div>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+            <div style="display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:var(--orange);border:2.5px solid var(--ink);flex:0 0 auto">
+              <svg width="22" height="17" viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="20" height="15" rx="3" stroke="#FBF3E7" stroke-width="2"/><path d="M1 4l10 6.5L21 4" stroke="#FBF3E7" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <p style="margin:0;font-size:10.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(251,243,231,.55)">Founder &amp; Executive Director</p>
+              <h3 style="margin:5px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(20px,2.2vw,28px);line-height:1.12">A letter from Adriana Cáceres</h3>
+            </div>
+          </div>
+          <p style="margin:0;font-size:17px;line-height:1.65;font-weight:500;color:rgba(251,243,231,.78)">Adriana shares the vision behind Nina To The Rescue — why this mission exists, and why it cannot wait.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <a href="assets/docs/Nina-To-The%20Rescue-en.pdf" target="_blank" rel="noopener" style="padding:15px 28px;border-radius:999px;background:var(--orange);color:var(--cream);border:2.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:16px;transition:transform .16s ease,box-shadow .16s ease;text-align:center" style-hover="transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)" style-active="transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)">Read in English →</a>
+          <a href="assets/docs/Nina-To-The%20Rescue-es.pdf" target="_blank" rel="noopener" style="padding:15px 26px;border-radius:999px;color:var(--cream);border:2.5px solid rgba(251,243,231,.45);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:16px;transition:background .18s ease,color .18s ease;text-align:center" style-hover="background:var(--cream);color:var(--ink)">Leer en Español →</a>
+        </div>
       </div>
     </div>
   </div>
@@ -262,7 +290,10 @@ a:hover { color: var(--ink); }
 
     <div data-reveal="scale" style="margin-top:clamp(36px,4vw,56px);border:2.5px solid var(--cream);border-radius:32px;background:var(--orange);box-shadow:12px 12px 0 var(--deep);overflow:hidden;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
       <div style="padding:clamp(28px,3.4vw,48px)">
-        <span style="display:inline-block;padding:7px 14px;border-radius:999px;background:var(--cream);color:var(--ink);font-size:11px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase">Next campaign</span>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px">
+          <span style="display:inline-block;padding:7px 14px;border-radius:999px;background:var(--cream);color:var(--ink);font-size:11px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase">Next campaign</span>
+          <span style="display:inline-block;padding:7px 14px;border-radius:999px;background:rgba(23,21,18,.2);border:1.5px solid rgba(251,243,231,.35);font-size:11px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase;color:rgba(251,243,231,.88)">Nov 23 – Nov 29</span>
+        </div>
         <h3 style="margin:20px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(24px,2.7vw,34px);line-height:1.12;letter-spacing:-.5px">Campaña Dr. Jeff por el Bienestar Animal</h3>
         <p style="margin:18px 0 0;font-size:17px;line-height:1.55;font-weight:600;color:rgba(251,243,231,.88)">A mega spay and neuter campaign in El Salvador, led by Dr. Jeff Young.</p>
         <div style="margin-top:30px;display:flex;flex-wrap:wrap;gap:13px">
@@ -315,20 +346,45 @@ a:hover { color: var(--ink); }
 </section>
 
 <section id="donate" style="position:relative;background:var(--orange);border-bottom:2px solid var(--ink);overflow:hidden">
-  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,104px) 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,4vw,60px);align-items:center">
-    <div>
-      <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(251,243,231,.7)">Donate</span>
-      <h2 data-reveal style="margin:14px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(28px,3.6vw,48px);line-height:1.08;letter-spacing:-.7px;color:#FBF3E7">Your donation becomes surgeries, vaccines and care.</h2>
-      <p data-reveal style="margin:20px 0 0;max-width:44ch;font-size:17.5px;line-height:1.55;font-weight:600;color:rgba(251,243,231,0.82)">Every contribution goes directly to the veterinary care behind the "Dr. Jeff por el Bienestar Animal" campaign.</p>
-      <div data-reveal style="margin-top:32px;display:flex;flex-wrap:wrap;gap:14px">
-        <a href="https://gofund.me/4e3979c94" target="_blank" rel="noopener noreferrer" style="padding:18px 34px;border-radius:999px;background:var(--cream);color:var(--ink);border:2.5px solid var(--ink);box-shadow:6px 6px 0 var(--deep);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:18px;transition:transform .16s ease, box-shadow .16s ease" style-hover="transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--deep)" style-active="transform:translate(4px,4px);box-shadow:1px 1px 0 var(--deep)">Donate now</a>
-        <a href="mailto:adriana.caceres@ninatotherescue.org" style="padding:18px 30px;border-radius:999px;color:var(--cream);border:2.5px solid var(--cream);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:18px;transition:background .18s ease,color .18s ease" style-hover="background:var(--cream);color:var(--ink)">Donate in kind</a>
+  <div style="max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,104px) 28px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(32px,4vw,60px);align-items:center">
+      <div>
+        <span data-reveal style="display:block;font-size:11.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(251,243,231,.7)">Donate</span>
+        <h2 data-reveal style="margin:14px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(28px,3.6vw,48px);line-height:1.08;letter-spacing:-.7px;color:#FBF3E7">Your donation becomes surgeries, vaccines and a life changed.</h2>
+        <p data-reveal style="margin:20px 0 0;max-width:44ch;font-size:17.5px;line-height:1.55;font-weight:600;color:rgba(251,243,231,0.82)">Give on GoFundMe — 100% of every dollar goes directly to Dr. Jeff's sterilization campaign in El Salvador. No middlemen. Just animals saved.</p>
+        <div data-reveal style="margin-top:32px;display:flex;flex-wrap:wrap;gap:14px">
+          <a href="https://gofund.me/4e3979c94" target="_blank" rel="noopener noreferrer" style="padding:18px 34px;border-radius:999px;background:var(--cream);color:var(--ink);border:2.5px solid var(--ink);box-shadow:6px 6px 0 var(--deep);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:18px;transition:transform .16s ease, box-shadow .16s ease" style-hover="transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--deep)" style-active="transform:translate(4px,4px);box-shadow:1px 1px 0 var(--deep)">Give on GoFundMe →</a>
+          <a href="mailto:adriana.caceres@ninatotherescue.org" style="padding:18px 30px;border-radius:999px;color:var(--cream);border:2.5px solid var(--cream);font-family:'Nunito Sans',sans-serif;font-weight:900;font-size:18px;transition:background .18s ease,color .18s ease" style-hover="background:var(--cream);color:var(--ink)">Donate in kind</a>
+        </div>
+      </div>
+      <div data-reveal="scale" style="display:flex;flex-direction:column;align-items:center;gap:24px">
+        <div style="width:min(100%,440px);border:2.5px solid var(--ink);border-radius:28px;overflow:hidden;box-shadow:12px 12px 0 var(--deep)">
+          <img src="assets/logo-original.jpg" alt="Nina To The Rescue" style="display:block;width:100%;height:auto">
+        </div>
+        <div class="qr-desktop" style="flex-direction:column;align-items:center;gap:12px;text-align:center">
+          <div id="qr-gofundme" style="padding:14px;background:var(--cream);border:2.5px solid var(--ink);border-radius:18px;box-shadow:6px 6px 0 var(--deep)"></div>
+          <p style="margin:0;font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(251,243,231,.65)">Scan to donate on GoFundMe</p>
+        </div>
       </div>
     </div>
-    <div data-reveal="scale" style="display:flex;justify-content:center">
-      <div style="width:min(100%,440px);border:2.5px solid var(--ink);border-radius:28px;overflow:hidden;box-shadow:12px 12px 0 var(--deep)">
-        <img src="assets/logo-original.jpg" alt="Nina To The Rescue" style="display:block;width:100%;height:auto">
+
+    <div id="donate-progress" style="margin-top:clamp(40px,5vw,60px);border:2.5px solid rgba(23,21,18,.3);border-radius:24px;background:rgba(23,21,18,.12);padding:clamp(24px,3vw,38px);opacity:0;transform:scale(0.92) translateY(28px);transition:opacity .75s cubic-bezier(.16,.84,.44,1),transform .75s cubic-bezier(.16,.84,.44,1)">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:24px">
+        <div>
+          <p style="margin:0;font-size:10.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(251,243,231,.6)">Campaign goal</p>
+          <p style="margin:8px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(28px,3vw,42px);line-height:1;color:var(--cream)">900 <span style="font-family:'Nunito Sans',sans-serif;font-size:.42em;font-weight:700;opacity:.85">sterilizations</span></p>
+        </div>
+        <div style="text-align:right">
+          <p style="margin:0;font-size:10.5px;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:rgba(251,243,231,.6)">Funded so far</p>
+          <p style="margin:8px 0 0;font-family:'Ultra',serif;font-weight:400;font-size:clamp(28px,3vw,42px);line-height:1;color:var(--cream)"><span id="donate-count">0</span><span style="font-family:'Nunito Sans',sans-serif;font-size:.42em;font-weight:700;opacity:.85"> / 900</span></p>
+        </div>
       </div>
+      <div style="background:rgba(23,21,18,.3);border:2px solid rgba(23,21,18,.35);border-radius:999px;height:28px;overflow:hidden">
+        <div id="donate-bar" style="width:0%;height:100%;background:var(--cream);border-radius:999px;transition:width 2s cubic-bezier(.25,.8,.25,1);position:relative">
+          <span id="donate-pct" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:11.5px;font-weight:900;color:var(--ink);opacity:0;transition:opacity .5s ease 1.2s;white-space:nowrap">4%</span>
+        </div>
+      </div>
+      <p style="margin:14px 0 0;font-size:13px;font-weight:700;color:rgba(251,243,231,.5)">Based on current GoFundMe data · Nov 23 – Nov 29, 2026</p>
     </div>
   </div>
 </section>
@@ -482,6 +538,79 @@ class Component extends DCLogic {
     }
     requestAnimationFrame(tick);
   })();
+})();
+</script>
+<script src="assets/qrcode.min.js"></script>
+<script>
+/* ── QR code ────────────────────────────────────────────────── */
+(function() {
+  var obs;
+  function initQR() {
+    var el = document.getElementById('qr-gofundme');
+    if (!el || el.querySelector('canvas,img')) return;
+    try {
+      new QRCode(el, {
+        text: 'https://gofund.me/4e3979c94',
+        width: 152, height: 152,
+        colorDark: '#171512', colorLight: '#FBF3E7',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+      if (obs) obs.disconnect();
+    } catch(e) {}
+  }
+  initQR();
+  obs = new MutationObserver(initQR);
+  obs.observe(document.body, { childList: true, subtree: true });
+})();
+
+/* ── Donate progress bar ────────────────────────────────────── */
+(function() {
+  var triggered = false;
+
+  function animate() {
+    if (triggered) return;
+    triggered = true;
+    var bar   = document.getElementById('donate-bar');
+    var pct   = document.getElementById('donate-pct');
+    var count = document.getElementById('donate-count');
+    if (!bar) return;
+    bar.style.width = '4%';
+    if (pct) setTimeout(function() { pct.style.opacity = '1'; }, 1000);
+    if (count) {
+      var start = null, end = 36, dur = 1800;
+      requestAnimationFrame(function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        count.textContent = Math.round(p * end);
+        if (p < 1) requestAnimationFrame(step);
+      });
+    }
+  }
+
+  function tryTrigger() {
+    if (triggered) return;
+    var progress = document.getElementById('donate-progress');
+    if (!progress) return;
+    var r = progress.getBoundingClientRect();
+    if (r.top < window.innerHeight * 0.9 && r.bottom > 0) {
+      window.removeEventListener('scroll', tryTrigger);
+      progress.style.opacity = '1';
+      progress.style.transform = 'none';
+      setTimeout(animate, 800);
+    }
+  }
+
+  function startListening() {
+    if (!document.getElementById('donate-progress')) return false;
+    tryTrigger();
+    window.addEventListener('scroll', tryTrigger, { passive: true });
+    return true;
+  }
+
+  if (!startListening()) {
+    var mo = new MutationObserver(function() { if (startListening()) mo.disconnect(); });
+    mo.observe(document.body, { childList: true, subtree: true });
+  }
 })();
 </script>
 </body>
