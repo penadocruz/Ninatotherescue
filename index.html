@@ -395,7 +395,6 @@ a:hover { color: var(--ink); }
       <p style="margin:0 0 14px;font-size:11px;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;color:rgba(251,243,231,.6)">Apoya la campaña</p>
       <div style="border:2.5px solid var(--ink);border-radius:24px;overflow:hidden;box-shadow:10px 10px 0 rgba(23,21,18,.45)">
         <div class="gfm-embed" data-url="https://www.gofundme.com/f/mega-spay-day/widget/large?attribution_id=sl%3A8e391654-b95c-4489-8b08-91ae3f1e0309"></div>
-        <script defer src="https://www.gofundme.com/static/js/embed.js"></script>
       </div>
     </div>
   </div>
@@ -573,6 +572,23 @@ class Component extends DCLogic {
   initQR();
   obs = new MutationObserver(initQR);
   obs.observe(document.body, { childList: true, subtree: true });
+})();
+
+/* ── GoFundMe widget ────────────────────────────────────────── */
+(function() {
+  function loadGFM() {
+    if (!document.querySelector('.gfm-embed')) return false;
+    if (document.querySelector('script[src*="gofundme"]')) return true;
+    var s = document.createElement('script');
+    s.src = 'https://www.gofundme.com/static/js/embed.js';
+    s.defer = true;
+    document.body.appendChild(s);
+    return true;
+  }
+  if (!loadGFM()) {
+    var mo = new MutationObserver(function() { if (loadGFM()) mo.disconnect(); });
+    mo.observe(document.body, { childList: true, subtree: true });
+  }
 })();
 
 </script>
